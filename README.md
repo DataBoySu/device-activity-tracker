@@ -25,7 +25,7 @@ The web interface shows real-time RTT measurements, device state detection, and 
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/whatsapp-activity-tracker.git
+git clone https://github.com/gommzystudio/device-activity-tracker.git
 cd whatsapp-activity-tracker
 
 # Install dependencies
