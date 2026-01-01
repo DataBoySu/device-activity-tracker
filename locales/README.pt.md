@@ -1,11 +1,12 @@
 <!--START_SECTION:navbar-->
 <div align="center">
-  <a href="README.md">🇺🇸 English</a> | <a href="locales/README.de.md">🇩🇪 Deutsch</a> | <a href="locales/README.fr.md">🇫🇷 Français</a> | <a href="locales/README.hi.md">🇮🇳 हिंदी</a> | <a href="locales/README.ja.md">🇯🇵 日本語</a> | <a href="locales/README.ko.md">🇰🇷 한국어</a> | <a href="locales/README.pt.md">🇵🇹 Português</a> | <a href="locales/README.ru.md">🇷🇺 Русский</a> | <a href="locales/README.zh.md">🇨🇳 中文</a>
+  <a href="../README.md">🇺🇸 English</a> | <a href="README.de.md">🇩🇪 Deutsch</a> | <a href="README.fr.md">🇫🇷 Français</a> | <a href="README.hi.md">🇮🇳 हिंदी</a> | <a href="README.ja.md">🇯🇵 日本語</a> | <a href="README.ko.md">🇰🇷 한국어</a> | <a href="README.pt.md">🇵🇹 Português</a> | <a href="README.ru.md">🇷🇺 Русский</a> | <a href="README.zh.md">🇨🇳 中文</a>
 </div>
 <!--END_SECTION:navbar-->
 
 <h1 align="center">Device Activity Tracker</h1>
-<p align="center">WhatsApp & Signal Activity Tracker via RTT Analysis</p>
+
+<p align="center">Rastreador de Atividade do WhatsApp & Signal via Análise de RTT</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Node.js-20+-339933?style=flat&logo=node.js&logoColor=white" alt="Node.js"/>
@@ -14,7 +15,7 @@
   <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License MIT"/>
 </p>
 
-> ⚠️ **DISCLAIMER**: Proof-of-concept for educational and security research purposes only. Demonstrates privacy vulnerabilities in WhatsApp and Signal.
+> ⚠️ **AVISO**: Prova de conceito apenas para fins educacionais e de pesquisa de segurança. Demonstra vulnerabilidades de privacidade no WhatsApp e no Signal.
 
 ## Overview
 
@@ -28,13 +29,13 @@ This project implements the research from the paper **"Careless Whisper: Exploit
 
 **Security implications:** This demonstrates a significant privacy vulnerability in messaging apps that can be exploited for surveillance.
 
-## Example
+## Exemplo
 
-![WhatsApp Activity Tracker Interface](example.png)
+![WhatsApp Activity Tracker Interface](../example.png)
 
 The web interface shows real-time RTT measurements, device state detection, and activity patterns.
 
-## Installation
+## Instalação
 
 ```bash
 # Clone repository
@@ -46,13 +47,13 @@ npm install
 cd client && npm install && cd ..
 ```
 
-**Requirements:** Node.js 20+, npm, WhatsApp account
+**Requisitos:** Node.js 20+, npm, conta do WhatsApp
 
-## Usage
+## Uso
 
-### Docker (Recommended)
+### Docker (Recomendado)
 
-The easiest way to run the application is using Docker:
+A forma mais fácil de executar a aplicação é usando Docker:
 
 ```bash
 # Copy environment template
@@ -66,18 +67,19 @@ cp .env.example .env
 docker compose up --build
 ```
 
-The application will be available at:
-- Frontend: [http://localhost:3000](http://localhost:3000) (or your configured `CLIENT_PORT`)
-- Backend: [http://localhost:3001](http://localhost:3001) (or your configured `BACKEND_PORT`)
+A aplicação estará disponível em:
+- Frontend: [http://localhost:3000](http://localhost:3000) (ou a porta configurada `CLIENT_PORT`)
+- Backend: [http://localhost:3001](http://localhost:3001) (ou a porta configurada `BACKEND_PORT`)
 
-To stop the containers:
+Para parar os containers:
+
 ```bash
 docker compose down
 ```
 
-### Manual Setup
+### Configuração Manual
 
-#### Web Interface
+#### Interface Web
 
 ```bash
 # Terminal 1: Start backend
@@ -87,17 +89,17 @@ npm run start:server
 npm run start:client
 ```
 
-Open `http://localhost:3000`, scan QR code with WhatsApp, then enter phone number to track (e.g., `491701234567`).
+Abra `http://localhost:3000`, escaneie o código QR com o WhatsApp e, em seguida, insira o número de telefone para rastrear (ex.: `491701234567`).
 
-### CLI Interface (only WhatsApp)
+### Interface CLI (somente WhatsApp)
 
 ```bash
 npm start
 ```
 
-Follow prompts to authenticate and enter target number.
+Siga os prompts para autenticar e inserir o número de destino.
 
-**Example Output:**
+**Exemplo de Saída:**
 
 ```
 ╔════════════════════════════════════════════════════════════════╗
@@ -112,34 +114,34 @@ Follow prompts to authenticate and enter target number.
 ╚════════════════════════════════════════════════════════════════╝
 ```
 
-- **🟢 Online**: Device is actively being used (RTT below threshold)
-- **🟡 Standby**: Device is idle/locked (RTT above threshold)
-- **🔴 Offline**: Device is offline or unreachable (no CLIENT ACK received)
+- **🟢 Online**: Dispositivo está sendo usado ativamente (RTT abaixo do limiar)
+- **🟡 Standby**: Dispositivo está ocioso/travado (RTT acima do limiar)
+- **🔴 Offline**: Dispositivo está offline ou inacessível (nenhum CLIENT ACK recebido)
 
-## How It Works
+## Como Funciona
 
-The tracker sends probe messages and measures the Round-Trip Time (RTT) to detect device activity. Two probe methods are available:
+O rastreador envia mensagens de sonda e mede o Tempo de Idade e Volta (RTT) para detectar a atividade do dispositivo. Dois métodos de sonda estão disponíveis:
 
-### Probe Methods
+### Métodos de Probe
 
-| Method | Description                                                                                                     |
-|--------|-----------------------------------------------------------------------------------------------------------------|
-| **Delete** (Default) | Sends a "delete" request for a non-existent message ID.                                                         |
-| **Reaction** | Sends a reaction emoji to a non-existent message ID. |
+| Método | Descrição |
+|--------|-|
+| **Excluir** (Padrão) | Envia uma solicitação "delete" para um ID de mensagem inexistente. |
+| **Reação** | Envia um emoji de reação para um ID de mensagem inexistente. |
 
-### Detection Logic
+### Lógica de Detecção
 
-The time between sending the probe message and receiving the CLIENT ACK (Status 3) is measured as RTT. Device state is detected using a dynamic threshold calculated as 90% of the median RTT: values below the threshold indicate active usage, values above indicate standby mode. Measurements are stored in a history and the median is continuously updated to adapt to different network conditions.
+O tempo entre o envio da mensagem de probe e o recebimento do CLIENT ACK (Status 3) é medido como RTT. O estado do dispositivo é detectado usando um limiar dinâmico calculado como 90% da mediana do RTT: valores abaixo do limiar indicam uso ativo, valores acima indicam modo em standby. As medições são armazenadas em um histórico e a mediana é atualizada continuamente para se adaptar a diferentes condições de rede.
 
-### Switching Probe Methods
+### Alternando Métodos de Sonda
 
-In the web interface, you can switch between probe methods using the dropdown in the control panel. In CLI mode, the delete method is used by default.
+Na interface web, você pode alternar entre métodos de sonda usando o menu suspenso no painel de controle. No modo CLI, o método delete é usado por padrão.
 
-## Common Issues
+## Problemas Comuns
 
-- **Not Connecting to WhatsApp**: Delete the `auth_info_baileys/` folder and re-scan the QR code.
+- **Não Conectando ao WhatsApp**: Exclua a pasta `auth_info_baileys/` e rescaneie o código QR.
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 device-activity-tracker/
@@ -162,13 +164,13 @@ However, WhatsApp does not disclose what “high volume” means, so this does n
 
 Disabling read receipts helps with regular messages but does not protect against this specific attack. As of December 2025, this vulnerability remains exploitable in WhatsApp and Signal.
 
-## Ethical & Legal Considerations
+## Considerações Éticas e Legais
 
-⚠️ For research and educational purposes only. Never track people without explicit consent - this may violate privacy laws. Authentication data (`auth_info_baileys/`) is stored locally and must never be committed to version control.
+⚠️ Apenas para fins de pesquisa e educação. Nunca rastreie pessoas sem consentimento explícito - isso pode violar leis de privacidade. Dados de autenticação (`auth_info_baileys/`) são armazenados localmente e nunca devem ser enviados para controle de versão.
 
-## Citation
+## Citação
 
-Based on research by Gegenhuber et al., University of Vienna & SBA Research:
+Baseado em pesquisa por Gegenhuber et al., Universidade de Viena & SBA Research:
 
 ```bibtex
 @inproceedings{gegenhuber2024careless,
@@ -176,20 +178,19 @@ Based on research by Gegenhuber et al., University of Vienna & SBA Research:
   author={Gegenhuber, Gabriel K. and G{\"u}nther, Maximilian and Maier, Markus and Judmayer, Aljosha and Holzbauer, Florian and Frenzel, Philipp {\'E}. and Ullrich, Johanna},
   year={2024},
   organization={University of Vienna, SBA Research}
-}
 ```
 
-## License
+## Licença
 
-MIT License - See LICENSE file.
+Licença MIT - Veja o arquivo LICENSE.
 
-Built with [@whiskeysockets/baileys](https://github.com/WhiskeySockets/Baileys)
+Construído com [@whiskeysockets/baileys](https://github.com/WhiskeySockets/Baileys)
 
 ---
 
-**Use responsibly. This tool demonstrates real security vulnerabilities that affect millions of users.**
+**Use com responsabilidade. Esta ferramenta demonstra vulnerabilidades de segurança reais que afetam milhões de usuários.**
 
-
-## Star History
+## Histórico de Estrelas 🌟
 
 [![Star History Chart](https://api.star-history.com/svg?repos=gommzystudio/device-activity-tracker&type=date&legend=top-left)](https://www.star-history.com/#gommzystudio/device-activity-tracker&type=date&legend=top-left)
+
